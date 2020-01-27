@@ -15,8 +15,6 @@ router.post('/signup', (req, res, next) => {
         }
         User.create({
             username: req.body.username,
-            phone: req.body.phone,
-            bio: req.body.bio,
             password: hash,
             image: req.body.image   
         }).then((user) => {
@@ -49,7 +47,7 @@ router.post('/login', (req, res, next) => {
 })
 
 router.get('/me', auth.verifyUser, (req, res, next) => {
-    res.json({ _id: req.user._id, username: req.user.username, password: req.user.password, bio: req.user.bio, phone: req.user.phone, image: req.user.image });
+    res.json({ _id: req.user._id, username: req.user.username, password: req.user.password, image: req.user.image });
 });
 
 // router.put('/me', auth.verifyUser, (req, res, next) => {

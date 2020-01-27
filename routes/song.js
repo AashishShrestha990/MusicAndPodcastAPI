@@ -1,5 +1,5 @@
 const express = require('express');
-const Posts = require('../models/posts');
+const Posts = require('../models/songs');
 const router = express.Router();
 // const jwt = require('jsonwebtoken');
 
@@ -7,17 +7,11 @@ router.post('/add', (req, res, next) => {
     
         Posts.create({
             name: req.body.name,
-            username: req.body.username,
-            story: req.body.story,
-            like: req.body.like,
-            comment: req.body.comment,
-            retweet: req.body.retweet,
-            time: req.body.time,
+            genre:req.body.name,
             image: req.body.image,
-            uimage: req.body.uimage
-        }).then((postweet) => {
+        }).then((postsongs) => {
            // let token = jwt.sign({ _id: posty._id }, process.env.SECRET);
-                        res.json({postweet, status: 'Post success!' });
+                        res.json({postsongs, status: 'Post success!' });
         }).catch(next);
     });
 
