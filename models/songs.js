@@ -5,6 +5,10 @@ const songsSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    userid: {
+        type: String,
+        required: false
+    },
     genre: {
         type: String,
         required: true

@@ -7,7 +7,8 @@ router.post('/add', (req, res, next) => {
     
         Posts.create({
             name: req.body.name,
-            genre:req.body.name,
+            userid:req.body.userid,
+            genre:req.body.genre,
             image: req.body.image,
         }).then((postsongs) => {
            // let token = jwt.sign({ _id: posty._id }, process.env.SECRET);
