@@ -5,7 +5,7 @@ const listSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    uid: {
+    uname: {
         type: String,
         required: true
     }
