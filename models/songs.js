@@ -5,7 +5,7 @@ const songsSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    userid: {
+    uname: {
         type: String,
         required: false
     },
