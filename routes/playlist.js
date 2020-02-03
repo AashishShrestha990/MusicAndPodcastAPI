@@ -1,17 +1,15 @@
 const express = require('express');
-const Posts = require('../models/songs');
+const Add = require('../models/playlists');
 const router = express.Router();
 
 router.post('/add', (req, res, next) => {
     
-        Posts.create({
+        Add.create({
             name: req.body.name,
-            uname:req.body.uname,
-            genre:req.body.genre,
-            image: req.body.image,
-        }).then((postsongs) => {
+            uname:req.body.userid,
+        }).then((playlist) => {
            // let token = jwt.sign({ _id: posty._id }, process.env.SECRET);
-                        res.json({postsongs, status: 'Post success!' });
+                        res.json({playlist, status: 'Added success!' });
         }).catch(next);
     });
 
@@ -23,7 +21,7 @@ router.post('/add', (req, res, next) => {
 // });
 router.route('/')
     .get((req, res, next) => {
-        Posts.find({})
+        Add.find({})
             .then((postweet) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
@@ -31,7 +29,7 @@ router.route('/')
             }).catch(next);
     })
     .put((req, res, next) => {
-        Posts.findOneAndUpdate({ author: req.user._id, _id: req.params.id }, { $set: req.body }, { new: true })
+        Add.findOneAndUpdate({ author: req.user._id, _id: req.params.id }, { $set: req.body }, { new: true })
             .then((reply) => {
                 if (reply == null) throw new Error("Task not found!");
                 res.json(reply);
