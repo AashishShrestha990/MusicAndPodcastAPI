@@ -50,11 +50,17 @@ router.get('/me', auth.verifyUser, (req, res, next) => {
     res.json({ _id: req.user._id, username: req.user.username, password: req.user.password, image: req.user.image });
 });
 
-// router.put('/me', auth.verifyUser, (req, res, next) => {
-//     User.findByIdAndUpdate(req.user._id, { $set: req.body }, { new: true })
-//         .then((user) => {
-//             res.json({ _id: user._id, username: user.username, image: user.image });
-//         }).catch(next);
-// });
+router.put('/me', auth.verifyUser, (req, res, next) => {
+    User.findByIdAndUpdate(req.user._id, { $set: req.body }, { new: true })
+        .then((user) => {
+            res.json({ _id: user._id, username: user.username, image: user.image });
+        }).catch(next);
+});
 
+router.delete('/me', auth.verifyUser, (req, res, next) => {
+    User.findByIdAndUpdate(req.user._id, { $set: req.body }, { new: true })
+        .then((user) => {
+            res.json(Reply);
+        }).catch(next);
+});
 module.exports = router;

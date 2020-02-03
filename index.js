@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const morgan = require('morgan');
 const userRouter = require('./routes/user');
 const dotenv = require('dotenv').config();
-const uploadRouter = require('./routes/upload');
+const uploadRouter = require('./routes/uploadpics');
 const postsRouter = require('./routes/song');
 const auth = require('./authenticate');
 const cors = require('cors');
@@ -23,7 +23,7 @@ mongoose.connect(process.env.URL, { useNewUrlParser: true, useUnifiedTopology: t
     }, (err) => console.log(err));
 
 app.use('/user', userRouter);
-app.use('/upload', uploadRouter);
+app.use('/uploadpics', uploadRouter);
 app.use('/song', postsRouter);
 app.use(auth.verifyUser);
 
