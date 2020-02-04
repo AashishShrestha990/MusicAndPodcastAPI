@@ -58,7 +58,7 @@ router.put('/me', auth.verifyUser, (req, res, next) => {
 });
 
 router.delete('/me', auth.verifyUser, (req, res, next) => {
-    User.findByIdAndUpdate(req.user._id, { $set: req.body }, { new: true })
+    User.findById(req.user._id, { $set: req.body }, { new: true })
         .then((user) => {
             res.json(Reply);
         }).catch(next);
