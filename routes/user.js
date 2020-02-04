@@ -63,4 +63,11 @@ router.delete('/me', auth.verifyUser, (req, res, next) => {
             res.json(Reply);
         }).catch(next);
 });
+
+router.get('/all', (req, res, next) => {
+    User.find()
+        .then((users) => {
+            res.json(users);
+        }).catch(next);
+});
 module.exports = router;
