@@ -25,6 +25,7 @@ mongoose.connect(process.env.URL, { useNewUrlParser: true, useUnifiedTopology: t
 app.use('/user', userRouter);
 app.use('/uploadpics', uploadRouter);
 app.use('/song', postsRouter);
+app.use('/playlist', playlistRouter);
 app.use(auth.verifyUser);
 
 

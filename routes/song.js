@@ -53,19 +53,16 @@ router.route('/:uname')
                 res.json(postsong);
             }).catch(next);
     })
-    .put((req, res, next) => {
-        Posts.findOneAndUpdate({ author: req.user._id, _id: req.params.id }, { $set: req.body }, { new: true })
-            .then((reply) => {
-                if (reply == null) throw new Error("Song not found!");
-                res.json(reply);
+    ;
+router.route('/:genre')
+    .get((req, res, next) => {
+        Posts.find({genre: req.params.genre})
+            .then((postsong) => {
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(postsong);
             }).catch(next);
     })
-    .delete((req, res, next) => {
-        Task.deleteMany({ author: req.user._id })
-            .then((status) => {
-                res.json(status);
-            }).catch(next);
-    });
-
+    ;
 
 module.exports = router;
