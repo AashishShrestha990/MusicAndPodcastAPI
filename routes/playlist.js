@@ -37,7 +37,7 @@ router.route('/')
 
 router.route('/:uname')
    .get((req, res, next) => {
-        Posts.find({uname: req.params.uname})
+        Add.find({uname: req.params.uname})
             .then((playlist) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');

@@ -5,6 +5,7 @@ const userRouter = require('./routes/user');
 const dotenv = require('dotenv').config();
 const uploadRouter = require('./routes/uploadpics');
 const postsRouter = require('./routes/song');
+const playlistRouter = require('./routes/playlist');
 const auth = require('./authenticate');
 const cors = require('cors');
 

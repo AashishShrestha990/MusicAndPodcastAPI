@@ -44,7 +44,17 @@ router.route('/')
             }).catch(next);
     });
 
-router.route('/:uname')
+router.route('/name/:name')
+    .get((req, res, next) => {
+        Posts.find({name: req.params.name})
+            .then((postsong) => {
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(postsong);
+            }).catch(next);
+    })
+    ;
+router.route('/username/:uname')
     .get((req, res, next) => {
         Posts.find({uname: req.params.uname})
             .then((postsong) => {
@@ -54,7 +64,7 @@ router.route('/:uname')
             }).catch(next);
     })
     ;
-router.route('/:genre')
+router.route('/genre/:genre')
     .get((req, res, next) => {
         Posts.find({genre: req.params.genre})
             .then((postsong) => {

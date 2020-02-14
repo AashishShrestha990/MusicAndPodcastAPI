@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 
 const slistSchema = new mongoose.Schema({
-    uid: {
+    pname: {
         type: String,
         required: false
     },
-    pid: {
+    sname: {
         type: String,
         required: false
     }
 });
 
-module.exports = mongoose.model('songlist', slistSchema);
+module.exports = mongoose.model('songplaylist', slistSchema);
