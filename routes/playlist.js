@@ -6,10 +6,9 @@ router.post('/add', (req, res, next) => {
     
         Add.create({
             name: req.body.name,
-            uname:req.body.userid,
+            uname:req.body.uname,
         }).then((playlist) => {
-           // let token = jwt.sign({ _id: posty._id }, process.env.SECRET);
-                        res.json({playlist, status: 'Added success!' });
+                        res.json({playlist, status: 'Add success!' });
         }).catch(next);
     });
 
@@ -22,10 +21,10 @@ router.post('/add', (req, res, next) => {
 router.route('/')
     .get((req, res, next) => {
         Add.find({})
-            .then((postweet) => {
+            .then((playlist) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
-                res.json(postweet);
+                res.json(playlist);
             }).catch(next);
     })
     .put((req, res, next) => {
@@ -35,5 +34,16 @@ router.route('/')
                 res.json(reply);
             }).catch(next);
     });
+
+router.route('/:uname')
+   .get((req, res, next) => {
+        Add.find({uname: req.params.uname})
+            .then((playlist) => {
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(playlist);
+            }).catch(next);
+    })
+    ;
 
 module.exports = router;

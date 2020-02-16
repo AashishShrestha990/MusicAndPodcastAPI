@@ -6,8 +6,8 @@ router.post('/add', (req, res, next) => {
     
         Posts.create({
             name: req.body.name,
-            uname:req.body.uname,
-            genre:req.body.genre,
+            uname: req.body.uname,
+            genre: req.body.genre,
             image: req.body.image,
         }).then((postsongs) => {
            // let token = jwt.sign({ _id: posty._id }, process.env.SECRET);
@@ -24,18 +24,55 @@ router.post('/add', (req, res, next) => {
 router.route('/')
     .get((req, res, next) => {
         Posts.find({})
-            .then((postweet) => {
+            .then((postsong) => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
-                res.json(postweet);
+                res.json(postsong);
             }).catch(next);
     })
     .put((req, res, next) => {
         Posts.findOneAndUpdate({ author: req.user._id, _id: req.params.id }, { $set: req.body }, { new: true })
             .then((reply) => {
-                if (reply == null) throw new Error("Task not found!");
+                if (reply == null) throw new Error("Song not found!");
                 res.json(reply);
             }).catch(next);
+    })
+    .delete((req, res, next) => {
+        Posts.deleteMany({ author: req.user._id })
+            .then((status) => {
+                res.json(status);
+            }).catch(next);
     });
+
+router.route('/name/:name')
+    .get((req, res, next) => {
+        Posts.find({name: req.params.name})
+            .then((postsong) => {
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(postsong);
+            }).catch(next);
+    })
+    ;
+router.route('/username/:uname')
+    .get((req, res, next) => {
+        Posts.find({uname: req.params.uname})
+            .then((postsong) => {
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(postsong);
+            }).catch(next);
+    })
+    ;
+router.route('/genre/:genre')
+    .get((req, res, next) => {
+        Posts.find({genre: req.params.genre})
+            .then((postsong) => {
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(postsong);
+            }).catch(next);
+    })
+    ;
 
 module.exports = router;

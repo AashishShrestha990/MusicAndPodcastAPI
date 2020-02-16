@@ -5,6 +5,7 @@ const userRouter = require('./routes/user');
 const dotenv = require('dotenv').config();
 const uploadRouter = require('./routes/uploadpics');
 const postsRouter = require('./routes/song');
+const playlistRouter = require('./routes/playlist');
 const auth = require('./authenticate');
 const cors = require('cors');
 
@@ -25,6 +26,7 @@ mongoose.connect(process.env.URL, { useNewUrlParser: true, useUnifiedTopology: t
 app.use('/user', userRouter);
 app.use('/uploadpics', uploadRouter);
 app.use('/song', postsRouter);
+app.use('/playlist', playlistRouter);
 app.use(auth.verifyUser);
 
 
